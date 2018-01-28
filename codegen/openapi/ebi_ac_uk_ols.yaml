@@ -1,0 +1,797 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "EBI OLS API"
+  contact:
+    email: "apiteam@swagger.io"
+host: "www.ebi.ac.uk"
+basePath: "/ols/api"
+tags:
+- name: "resources"
+  description: ""
+- name: "search"
+  description: ""
+schemes:
+- "https"
+paths:
+  /:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "api"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/api"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "ontologies"
+      parameters:
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ontologies"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "ontology"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ontology"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/terms:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "concepts"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/terms"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/terms/{iri}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "concept"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/term"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/properties:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "properties"
+      deprecated: true
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/properties/{iri}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "property"
+      deprecated: true
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/individuals:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "individuals"
+      deprecated: true
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/individuals/{iri}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "individual"
+      deprecated: true
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /search:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "search"
+      parameters:
+      - name: "q"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+      - name: "type"
+        in: "query"
+        description: ""
+        type: "string"
+        enum:
+          - "class"
+          - "property"
+          - "individual"
+          - "ontology"
+      - name: "fieldList"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "iri"
+            - "label"
+            - "short_form"
+            - "obo_id"
+            - "ontology_name"
+            - "ontology_prefix"
+            - "description"
+            - "type"
+      - name: "queryFields"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "label"
+            - "synonyms"
+            - "description"
+            - "short_form"
+            - "obo_id"
+            - "annotations"
+            - "logical_description"
+            - "iri"
+      - name: "exact"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "groupField"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "obsoletes"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "local"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "rows"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "start"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/search"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /select:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "select"
+      parameters:
+      - name: "q"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+      - name: "type"
+        in: "query"
+        description: ""
+        type: "string"
+        enum:
+          - "class"
+          - "property"
+          - "individual"
+          - "ontology"
+      - name: "fieldList"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "iri"
+            - "label"
+            - "short_form"
+            - "obo_id"
+            - "ontology_name"
+            - "ontology_prefix"
+            - "description"
+            - "type"
+      - name: "obsoletes"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "local"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "rows"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "start"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/search"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /suggest:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "suggest"
+      deprecated: true
+      parameters:
+      - name: "q"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+      - name: "rows"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "start"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/suggest"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+
+definitions:
+  error:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+      message:
+        type: "string"
+      path:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+      timestamp:
+        type: "integer"
+        format: "int64"
+  links:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/link"
+      properties:
+        $ref: "#/definitions/link"
+      individuals:
+        $ref: "#/definitions/link"
+      ontologies:
+        $ref: "#/definitions/link"
+      terms:
+        $ref: "#/definitions/link"
+      profile:
+        $ref: "#/definitions/link"
+      first:
+        $ref: "#/definitions/link"
+      last:
+        $ref: "#/definitions/link"
+      next:
+        $ref: "#/definitions/link"
+      prev:
+        $ref: "#/definitions/link"
+      parents:
+        $ref: "#/definitions/link"
+      ancestors:
+        $ref: "#/definitions/link"
+      jstree:
+        $ref: "#/definitions/link"
+      children:
+        $ref: "#/definitions/link"
+      descendants:
+        $ref: "#/definitions/link"
+      graph:
+        $ref: "#/definitions/link"
+      hierarchicalParents:
+        $ref: "#/definitions/link"
+      hierarchicalAncestors:
+        $ref: "#/definitions/link"
+      hierarchicalChildren:
+        $ref: "#/definitions/link"
+      hierarchicalDescendants:
+        $ref: "#/definitions/link"
+  link:
+    type: "object"
+    properties:
+      href:
+        type: "string"
+  page:
+    type: "object"
+    properties:
+      size:
+        type: "integer"
+      totalElements:
+        type: "integer"
+      totalPages:
+        type: "integer"
+      number:
+        type: "integer"
+  api:
+    type: "object"
+    properties:
+      _links:
+        $ref: "#/definitions/links"
+  ontologies:
+    type: "object"
+    properties:
+      _embedded:
+        type: "object"
+        properties:
+          ontologies:
+            type: "array"
+            items:
+              $ref: "#/definitions/ontology"
+      _links:
+        $ref: "#/definitions/links"
+      page:
+        $ref: "#/definitions/page"
+  ontology:
+    type: "object"
+    properties:
+      ontologyId:
+        type: "string"
+      loaded:
+        type: "string"
+      updated:
+        type: "string"
+      status:
+        type: "string"
+      message:
+        type: "string"
+      version:
+        type: "string"
+      numberOfTerms:
+        type: "integer"
+      numberOfProperties:
+        type: "integer"
+      numberOfIndividuals:
+        type: "integer"
+      config:
+        type: "object"
+        properties:
+          id:
+            type: "string"
+          title:
+            type: "string"
+          namespace:
+            type: "string"
+          description:
+            type: "string"
+          version:
+            type: "string"
+      _links:
+        $ref: "#/definitions/links"
+  terms:
+    type: "object"
+    properties:
+      _embedded:
+        type: "object"
+        properties:
+          terms:
+            type: "array"
+            items:
+              $ref: "#/definitions/term"
+      _links:
+        $ref: "#/definitions/links"
+      page:
+        $ref: "#/definitions/page"
+  term:
+    type: "object"
+    properties:
+      iri:
+        type: "string"
+      label:
+        type: "string"
+      description:
+        type: "array"
+        items:
+          type: "string"
+      annotation:
+        type: "object"
+        properties:
+          alternative term:
+            type: "array"
+            items:
+              type: "string"
+      synonyms:
+        type: "object"
+      ontology_name:
+        type: "string"
+      ontology_prefix:
+        type: "string"
+      ontology_iri:
+        type: "string"
+      is_obsolete:
+        type: "boolean"
+      term_replaced_by:
+        type: "object"
+      is_defining_ontology:
+        type: "boolean"
+      has_children:
+        type: "boolean"
+      is_root:
+        type: "boolean"
+      short_form:
+        type: "string"
+      in_subset:
+        type: "array"
+        items:
+          type: "string"
+      obo_id:
+        type: "string"
+      obo_definition_citation:
+        type: "array"
+        items:
+          type: "object"
+      obo_xref:
+        type: "array"
+        items:
+          type: "object"
+      obo_synonym:
+        type: "array"
+        items:
+          type: "object"
+      _links:
+        $ref: "#/definitions/links"
+  search:
+    type: "object"
+    properties:
+      responseHeader:
+        type: "object"
+      response:
+        type: "object"
+        properties:
+          numFound:
+            type: "integer"
+          start:
+            type: "integer"
+          docs:
+            type: "array"
+            items:
+              $ref: "#/definitions/term"
+      facet_counts:
+        type: "object"
+      highlighting:
+        type: "object"
+  suggest:
+    type: "object"
+    properties:
+      responseHeader:
+        type: "object"
+      response:
+        type: "object"
+        properties:
+          numFound:
+            type: "integer"
+          start:
+            type: "integer"
+          docs:
+            type: "array"
+            items:
+              properties:
+                autosuggest:
+                  type: "string"
+      facet_counts:
+        type: "object"
+      highlighting:
+        type: "object"
+  meta:
+    type: "object"
+    properties:
+      ontology_xpath:
+        type: "string"
+        default: "embedded.ontologies"
+      ontology:
+        type: "object"
+        properties:
+          iri:
+            type: "string"
+            default: "config.id"
+          name:
+            type: "string"
+            default: "config.title"
+          description:
+            type: "string"
+            default: "config.description"
+          acronym:
+            type: "string"
+            default: "config.namespace"
+          version:
+            type: "string"
+            default: "config.version"
+          date:
+            type: "string"
+            default: "updated"
+      concept_xpath:
+        type: "string"
+        default: "embedded.terms"
+      concept:
+        type: "object"
+        properties:
+          iri:
+            type: "string"
+            default: "iri"
+          label:
+            type: "string"
+            default: "label"
+          description:
+            type: "string"
+            default: "description"
+          short:
+            type: "string"
+            default: "short_form"
+          synonyms:
+            type: "string"
+            default: "annotation.alternative_term"
+externalDocs:
+  description: ""
+  url: "https://www.ebi.ac.uk/"

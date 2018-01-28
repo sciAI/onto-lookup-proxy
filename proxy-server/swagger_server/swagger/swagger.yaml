@@ -1,0 +1,173 @@
+---
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "PROXY OLS API"
+  contact:
+    email: "apiteam@swagger.io"
+host: "176.31.200.202:8000"
+basePath: "/"
+tags:
+- name: "resource"
+  description: ""
+- name: "search"
+  description: ""
+schemes:
+- "http"
+paths:
+  /repository:
+    get:
+      tags:
+      - "resource"
+      summary: ""
+      description: ""
+      operationId: "repositories"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/repository"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+  /repository/{repository}/ontology:
+    get:
+      tags:
+      - "resource"
+      summary: ""
+      description: ""
+      operationId: "ontologies"
+      parameters:
+      - name: "repository"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "plain"
+        in: "query"
+        description: ""
+        required: false
+        type: "boolean"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ontology"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+  /repository/{repository}/ontology/{ontology}/concepts:
+    get:
+      tags:
+      - "resource"
+      summary: ""
+      description: ""
+      operationId: "concepts"
+      parameters:
+      - name: "repository"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "plain"
+        in: "query"
+        description: ""
+        required: false
+        type: "boolean"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/concept"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+definitions:
+  error:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+  repositories:
+    type: "array"
+    items:
+      $ref: "#/definitions/repository"
+  repository:
+    type: "object"
+    properties:
+      url:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      version:
+        type: "string"
+  ontologies:
+    type: "array"
+    items:
+      $ref: "#/definitions/ontology"
+  ontology:
+    type: "object"
+    properties:
+      http://schema.org/repository:
+        $ref: "#/definitions/jsonld_id"
+      iri:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      acronym:
+        type: "string"
+      version:
+        type: "string"
+      date:
+        type: "string"
+  concepts:
+    type: "array"
+    items:
+      $ref: "#/definitions/concept"
+  concept:
+    type: "object"
+    properties:
+      http://schema.org/repository:
+        $ref: "#/definitions/jsonld_id"
+      http://schema.org/ontology:
+        $ref: "#/definitions/jsonld_id"
+      iri:
+        type: "string"
+      label:
+        type: "string"
+      description:
+        type: "string"
+      short:
+        type: "string"
+      synonyms:
+        type: "string"
+  jsonld_id:
+    properties:
+      '@id':
+        type: "string"
