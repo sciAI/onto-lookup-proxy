@@ -21,7 +21,7 @@ class TestResourceController(BaseTestCase):
         
         """
         query_string = [('plain', true)]
-        response = self.client.open('//repository/{repository}/ontology/{ontology}/concepts'.format(repository='repository_example', ontology='ontology_example'),
+        response = self.client.open('//repositories/{repository}/ontologies/{ontology}/concepts'.format(repository='repository_example', ontology='ontology_example'),
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
@@ -33,7 +33,7 @@ class TestResourceController(BaseTestCase):
         
         """
         query_string = [('plain', true)]
-        response = self.client.open('//repository/{repository}/ontology'.format(repository='repository_example'),
+        response = self.client.open('//repositories/{repository}/ontologies'.format(repository='repository_example'),
                                     method='GET',
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
@@ -44,7 +44,7 @@ class TestResourceController(BaseTestCase):
 
         
         """
-        response = self.client.open('//repository',
+        response = self.client.open('//repositories',
                                     method='GET')
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 

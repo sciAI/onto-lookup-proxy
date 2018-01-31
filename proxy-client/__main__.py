@@ -19,28 +19,68 @@ page = """
 <form action="/start" method="POST">
 <input type="submit" value="Start"/>
 </form>
-<div id="output"></div>
+<hr/>
+<div>Sample <b>Repository</b> output:<pre id="repositories"></pre></div>
+<div>Sample <b>Ontology</b> output:<pre id="ontologies"></pre></div>
+<div>Sample <b>Concept</b> output:<pre id="concepts"></pre></div>
+<pre id="output"></pre>
+<script>
+document.getElementById("repositories").innerHTML = JSON.stringify(%s, undefined, 2);
+document.getElementById("ontologies").innerHTML = JSON.stringify(%s, undefined, 2);
+document.getElementById("concepts").innerHTML = JSON.stringify(%s, undefined, 2);
+</script>
 </body>
 </html>
 """
 
+repository_context = {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+}
+
+ontology_context = {
+    "omv": "http://omv.ontoware.org/2005/05/ontology#",
+    "dct": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+}
+
+concept_context = {
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+}
+
 @app.route("/")
 def index():
-    return page
+    api = swagger_client.ResourceApi()
+
+    _repo = ''
+    _onto = ''
+    _term = ''
+
+    repositories = api.repositories()
+    for repository in repositories:
+        repo = repository.get('@id')
+
+        ontologies = api.ontologies(repository=repo)
+        for ontology in ontologies:
+            onto = ontology.get('http://omv.ontoware.org/2005/05/ontology#acronym')
+
+            concepts = api.concepts(repository=repo, ontology=onto)
+            for concept in concepts:
+                term = concept.get('http://www.w3.org/2004/02/skos/core#note')
+
+                return page % (
+                    jsonld.compact(repository, repository_context),
+                    jsonld.compact(ontology, ontology_context),
+                    jsonld.compact(concept, concept_context)
+                )
+
+    return page % ('', '', '')
 
 @app.route("/start", methods=['POST'])
 def start():
     echo = ''
-
-    context = {
-        "iri": "http://schema.org/iri",
-        "description": "http://schema.org/description",
-        "label": "http://schema.org/label",
-        "short": "http://schema.org/short_form",
-        "synonyms": "http://schema.org/synonyms",
-        "repository": {"@id": "http://schema.org/repository", "@type": "@id"},
-        "ontology": {"@id": "http://schema.org/ontology", "@type": "@id"}
-    }
 
     client = MongoClient('localhost', 27017)
     api = swagger_client.ResourceApi()
@@ -49,15 +89,15 @@ def start():
     db_terms = db.terms
     repositories = api.repositories()
     for repository in repositories:
-        repo = repository.name
+        repo = repository.get('@id')
 
         ontologies = api.ontologies(repository=repo)
         for ontology in ontologies:
-            onto = ontology.acronym
+            onto = ontology.get('http://omv.ontoware.org/2005/05/ontology#acronym')
 
             concepts = api.concepts(repository=repo, ontology=onto)
             for concept in concepts:
-                compact = jsonld.compact(concept, context)
+                compact = jsonld.compact(concept, concept_context)
                 db_term = db_terms.insert(compact, check_keys=False)
 
     return '{0} records processed'.format(db_terms.count())

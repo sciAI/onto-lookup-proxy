@@ -67,13 +67,13 @@ except ApiException as e:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://176.31.200.202:8000*
+All URIs are relative to *http://176.31.200.199:80*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ResourceApi* | [**concepts**](docs/ResourceApi.md#concepts) | **GET** /repository/{repository}/ontology/{ontology}/concepts | 
-*ResourceApi* | [**ontologies**](docs/ResourceApi.md#ontologies) | **GET** /repository/{repository}/ontology | 
-*ResourceApi* | [**repositories**](docs/ResourceApi.md#repositories) | **GET** /repository | 
+*ResourceApi* | [**concepts**](docs/ResourceApi.md#concepts) | **GET** /repositories/{repository}/ontologies/{ontology}/concepts | 
+*ResourceApi* | [**ontologies**](docs/ResourceApi.md#ontologies) | **GET** /repositories/{repository}/ontologies | 
+*ResourceApi* | [**repositories**](docs/ResourceApi.md#repositories) | **GET** /repositories | 
 
 
 ## Documentation For Models
@@ -81,7 +81,6 @@ Class | Method | HTTP request | Description
  - [Concept](docs/Concept.md)
  - [Concepts](docs/Concepts.md)
  - [Error](docs/Error.md)
- - [JsonldId](docs/JsonldId.md)
  - [Ontologies](docs/Ontologies.md)
  - [Ontology](docs/Ontology.md)
  - [Repositories](docs/Repositories.md)

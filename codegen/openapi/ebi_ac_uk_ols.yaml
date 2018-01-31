@@ -753,22 +753,22 @@ definitions:
       ontology:
         type: "object"
         properties:
-          iri:
+          "@id":
             type: "string"
             default: "config.id"
-          name:
+          "dct:title":
             type: "string"
             default: "config.title"
-          description:
+          "dct:description":
             type: "string"
             default: "config.description"
-          acronym:
+          "omv:acronym":
             type: "string"
             default: "config.namespace"
-          version:
+          "owl:versionInfo":
             type: "string"
             default: "config.version"
-          date:
+          "dct:modified":
             type: "string"
             default: "updated"
       concept_xpath:
@@ -777,19 +777,22 @@ definitions:
       concept:
         type: "object"
         properties:
-          iri:
+          "@id":
             type: "string"
             default: "iri"
-          label:
+          "rdfs:isDefinedBy":
+            type: "string"
+            default: "ontology_iri"
+          "skos:prefLabel":
             type: "string"
             default: "label"
-          description:
+          "skos:definition":
             type: "string"
             default: "description"
-          short:
+          "skos:note":
             type: "string"
             default: "short_form"
-          synonyms:
+          "skos:altLabel":
             type: "string"
             default: "annotation.alternative_term"
 externalDocs:

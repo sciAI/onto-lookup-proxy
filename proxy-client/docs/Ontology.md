@@ -3,13 +3,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**httpschema_orgrepository** | [**JsonldId**](JsonldId.md) |  | [optional] 
-**iri** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**acronym** | **str** |  | [optional] 
-**version** | **str** |  | [optional] 
-**date** | **str** |  | [optional] 
+**schemaincluded_in_data_catalog** | **str** |  | [optional] 
+**id** | **str** |  | [optional] 
+**type** | **str** |  | [optional] [default to 'http://www.w3.org/2002/07/owl#Ontology']
+**dcttitle** | **str** |  | [optional] 
+**dctdescription** | **str** |  | [optional] 
+**omvacronym** | **str** |  | [optional] 
+**owlversion_info** | **str** |  | [optional] 
+**dctmodified** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

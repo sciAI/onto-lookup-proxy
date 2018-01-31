@@ -1,12 +1,12 @@
 # swagger_client.ResourceApi
 
-All URIs are relative to *http://176.31.200.202:8000*
+All URIs are relative to *http://176.31.200.199:80*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**concepts**](ResourceApi.md#concepts) | **GET** /repository/{repository}/ontology/{ontology}/concepts | 
-[**ontologies**](ResourceApi.md#ontologies) | **GET** /repository/{repository}/ontology | 
-[**repositories**](ResourceApi.md#repositories) | **GET** /repository | 
+[**concepts**](ResourceApi.md#concepts) | **GET** /repositories/{repository}/ontologies/{ontology}/concepts | 
+[**ontologies**](ResourceApi.md#ontologies) | **GET** /repositories/{repository}/ontologies | 
+[**repositories**](ResourceApi.md#repositories) | **GET** /repositories | 
 
 
 # **concepts**

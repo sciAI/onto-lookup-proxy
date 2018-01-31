@@ -31,199 +31,225 @@ class Ontology(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'httpschema_orgrepository': 'JsonldId',
-        'iri': 'str',
-        'name': 'str',
-        'description': 'str',
-        'acronym': 'str',
-        'version': 'str',
-        'date': 'str'
+        'schemaincluded_in_data_catalog': 'str',
+        'id': 'str',
+        'type': 'str',
+        'dcttitle': 'str',
+        'dctdescription': 'str',
+        'omvacronym': 'str',
+        'owlversion_info': 'str',
+        'dctmodified': 'str'
     }
 
     attribute_map = {
-        'httpschema_orgrepository': 'http://schema.org/repository',
-        'iri': 'iri',
-        'name': 'name',
-        'description': 'description',
-        'acronym': 'acronym',
-        'version': 'version',
-        'date': 'date'
+        'schemaincluded_in_data_catalog': 'schema:includedInDataCatalog',
+        'id': '@id',
+        'type': '@type',
+        'dcttitle': 'dct:title',
+        'dctdescription': 'dct:description',
+        'omvacronym': 'omv:acronym',
+        'owlversion_info': 'owl:versionInfo',
+        'dctmodified': 'dct:modified'
     }
 
-    def __init__(self, httpschema_orgrepository=None, iri=None, name=None, description=None, acronym=None, version=None, date=None):
+    def __init__(self, schemaincluded_in_data_catalog=None, id=None, type='http://www.w3.org/2002/07/owl#Ontology', dcttitle=None, dctdescription=None, omvacronym=None, owlversion_info=None, dctmodified=None):
         """
         Ontology - a model defined in Swagger
         """
 
-        self._httpschema_orgrepository = None
-        self._iri = None
-        self._name = None
-        self._description = None
-        self._acronym = None
-        self._version = None
-        self._date = None
+        self._schemaincluded_in_data_catalog = None
+        self._id = None
+        self._type = None
+        self._dcttitle = None
+        self._dctdescription = None
+        self._omvacronym = None
+        self._owlversion_info = None
+        self._dctmodified = None
 
-        if httpschema_orgrepository is not None:
-          self.httpschema_orgrepository = httpschema_orgrepository
-        if iri is not None:
-          self.iri = iri
-        if name is not None:
-          self.name = name
-        if description is not None:
-          self.description = description
-        if acronym is not None:
-          self.acronym = acronym
-        if version is not None:
-          self.version = version
-        if date is not None:
-          self.date = date
-
-    @property
-    def httpschema_orgrepository(self):
-        """
-        Gets the httpschema_orgrepository of this Ontology.
-
-        :return: The httpschema_orgrepository of this Ontology.
-        :rtype: JsonldId
-        """
-        return self._httpschema_orgrepository
-
-    @httpschema_orgrepository.setter
-    def httpschema_orgrepository(self, httpschema_orgrepository):
-        """
-        Sets the httpschema_orgrepository of this Ontology.
-
-        :param httpschema_orgrepository: The httpschema_orgrepository of this Ontology.
-        :type: JsonldId
-        """
-
-        self._httpschema_orgrepository = httpschema_orgrepository
+        if schemaincluded_in_data_catalog is not None:
+          self.schemaincluded_in_data_catalog = schemaincluded_in_data_catalog
+        if id is not None:
+          self.id = id
+        if type is not None:
+          self.type = type
+        if dcttitle is not None:
+          self.dcttitle = dcttitle
+        if dctdescription is not None:
+          self.dctdescription = dctdescription
+        if omvacronym is not None:
+          self.omvacronym = omvacronym
+        if owlversion_info is not None:
+          self.owlversion_info = owlversion_info
+        if dctmodified is not None:
+          self.dctmodified = dctmodified
 
     @property
-    def iri(self):
+    def schemaincluded_in_data_catalog(self):
         """
-        Gets the iri of this Ontology.
+        Gets the schemaincluded_in_data_catalog of this Ontology.
 
-        :return: The iri of this Ontology.
+        :return: The schemaincluded_in_data_catalog of this Ontology.
         :rtype: str
         """
-        return self._iri
+        return self._schemaincluded_in_data_catalog
 
-    @iri.setter
-    def iri(self, iri):
+    @schemaincluded_in_data_catalog.setter
+    def schemaincluded_in_data_catalog(self, schemaincluded_in_data_catalog):
         """
-        Sets the iri of this Ontology.
+        Sets the schemaincluded_in_data_catalog of this Ontology.
 
-        :param iri: The iri of this Ontology.
+        :param schemaincluded_in_data_catalog: The schemaincluded_in_data_catalog of this Ontology.
         :type: str
         """
 
-        self._iri = iri
+        self._schemaincluded_in_data_catalog = schemaincluded_in_data_catalog
 
     @property
-    def name(self):
+    def id(self):
         """
-        Gets the name of this Ontology.
+        Gets the id of this Ontology.
 
-        :return: The name of this Ontology.
+        :return: The id of this Ontology.
         :rtype: str
         """
-        return self._name
+        return self._id
 
-    @name.setter
-    def name(self, name):
+    @id.setter
+    def id(self, id):
         """
-        Sets the name of this Ontology.
+        Sets the id of this Ontology.
 
-        :param name: The name of this Ontology.
+        :param id: The id of this Ontology.
         :type: str
         """
 
-        self._name = name
+        self._id = id
 
     @property
-    def description(self):
+    def type(self):
         """
-        Gets the description of this Ontology.
+        Gets the type of this Ontology.
 
-        :return: The description of this Ontology.
+        :return: The type of this Ontology.
         :rtype: str
         """
-        return self._description
+        return self._type
 
-    @description.setter
-    def description(self, description):
+    @type.setter
+    def type(self, type):
         """
-        Sets the description of this Ontology.
+        Sets the type of this Ontology.
 
-        :param description: The description of this Ontology.
+        :param type: The type of this Ontology.
         :type: str
         """
 
-        self._description = description
+        self._type = type
 
     @property
-    def acronym(self):
+    def dcttitle(self):
         """
-        Gets the acronym of this Ontology.
+        Gets the dcttitle of this Ontology.
 
-        :return: The acronym of this Ontology.
+        :return: The dcttitle of this Ontology.
         :rtype: str
         """
-        return self._acronym
+        return self._dcttitle
 
-    @acronym.setter
-    def acronym(self, acronym):
+    @dcttitle.setter
+    def dcttitle(self, dcttitle):
         """
-        Sets the acronym of this Ontology.
+        Sets the dcttitle of this Ontology.
 
-        :param acronym: The acronym of this Ontology.
+        :param dcttitle: The dcttitle of this Ontology.
         :type: str
         """
 
-        self._acronym = acronym
+        self._dcttitle = dcttitle
 
     @property
-    def version(self):
+    def dctdescription(self):
         """
-        Gets the version of this Ontology.
+        Gets the dctdescription of this Ontology.
 
-        :return: The version of this Ontology.
+        :return: The dctdescription of this Ontology.
         :rtype: str
         """
-        return self._version
+        return self._dctdescription
 
-    @version.setter
-    def version(self, version):
+    @dctdescription.setter
+    def dctdescription(self, dctdescription):
         """
-        Sets the version of this Ontology.
+        Sets the dctdescription of this Ontology.
 
-        :param version: The version of this Ontology.
+        :param dctdescription: The dctdescription of this Ontology.
         :type: str
         """
 
-        self._version = version
+        self._dctdescription = dctdescription
 
     @property
-    def date(self):
+    def omvacronym(self):
         """
-        Gets the date of this Ontology.
+        Gets the omvacronym of this Ontology.
 
-        :return: The date of this Ontology.
+        :return: The omvacronym of this Ontology.
         :rtype: str
         """
-        return self._date
+        return self._omvacronym
 
-    @date.setter
-    def date(self, date):
+    @omvacronym.setter
+    def omvacronym(self, omvacronym):
         """
-        Sets the date of this Ontology.
+        Sets the omvacronym of this Ontology.
 
-        :param date: The date of this Ontology.
+        :param omvacronym: The omvacronym of this Ontology.
         :type: str
         """
 
-        self._date = date
+        self._omvacronym = omvacronym
+
+    @property
+    def owlversion_info(self):
+        """
+        Gets the owlversion_info of this Ontology.
+
+        :return: The owlversion_info of this Ontology.
+        :rtype: str
+        """
+        return self._owlversion_info
+
+    @owlversion_info.setter
+    def owlversion_info(self, owlversion_info):
+        """
+        Sets the owlversion_info of this Ontology.
+
+        :param owlversion_info: The owlversion_info of this Ontology.
+        :type: str
+        """
+
+        self._owlversion_info = owlversion_info
+
+    @property
+    def dctmodified(self):
+        """
+        Gets the dctmodified of this Ontology.
+
+        :return: The dctmodified of this Ontology.
+        :rtype: str
+        """
+        return self._dctmodified
+
+    @dctmodified.setter
+    def dctmodified(self, dctmodified):
+        """
+        Sets the dctmodified of this Ontology.
+
+        :param dctmodified: The dctmodified of this Ontology.
+        :type: str
+        """
+
+        self._dctmodified = dctmodified
 
     def to_dict(self):
         """

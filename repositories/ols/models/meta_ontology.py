@@ -31,173 +31,173 @@ class MetaOntology(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'iri': 'str',
-        'name': 'str',
-        'description': 'str',
-        'acronym': 'str',
-        'version': 'str',
-        'date': 'str'
+        'id': 'str',
+        'dcttitle': 'str',
+        'dctdescription': 'str',
+        'omvacronym': 'str',
+        'owlversion_info': 'str',
+        'dctmodified': 'str'
     }
 
     attribute_map = {
-        'iri': 'iri',
-        'name': 'name',
-        'description': 'description',
-        'acronym': 'acronym',
-        'version': 'version',
-        'date': 'date'
+        'id': '@id',
+        'dcttitle': 'dct:title',
+        'dctdescription': 'dct:description',
+        'omvacronym': 'omv:acronym',
+        'owlversion_info': 'owl:versionInfo',
+        'dctmodified': 'dct:modified'
     }
 
-    def __init__(self, iri='config.id', name='config.title', description='config.description', acronym='config.namespace', version='config.version', date='updated'):
+    def __init__(self, id='config.id', dcttitle='config.title', dctdescription='config.description', omvacronym='config.namespace', owlversion_info='config.version', dctmodified='updated'):
         """
         MetaOntology - a model defined in Swagger
         """
 
-        self._iri = None
-        self._name = None
-        self._description = None
-        self._acronym = None
-        self._version = None
-        self._date = None
+        self._id = None
+        self._dcttitle = None
+        self._dctdescription = None
+        self._omvacronym = None
+        self._owlversion_info = None
+        self._dctmodified = None
 
-        if iri is not None:
-          self.iri = iri
-        if name is not None:
-          self.name = name
-        if description is not None:
-          self.description = description
-        if acronym is not None:
-          self.acronym = acronym
-        if version is not None:
-          self.version = version
-        if date is not None:
-          self.date = date
+        if id is not None:
+          self.id = id
+        if dcttitle is not None:
+          self.dcttitle = dcttitle
+        if dctdescription is not None:
+          self.dctdescription = dctdescription
+        if omvacronym is not None:
+          self.omvacronym = omvacronym
+        if owlversion_info is not None:
+          self.owlversion_info = owlversion_info
+        if dctmodified is not None:
+          self.dctmodified = dctmodified
 
     @property
-    def iri(self):
+    def id(self):
         """
-        Gets the iri of this MetaOntology.
+        Gets the id of this MetaOntology.
 
-        :return: The iri of this MetaOntology.
+        :return: The id of this MetaOntology.
         :rtype: str
         """
-        return self._iri
+        return self._id
 
-    @iri.setter
-    def iri(self, iri):
+    @id.setter
+    def id(self, id):
         """
-        Sets the iri of this MetaOntology.
+        Sets the id of this MetaOntology.
 
-        :param iri: The iri of this MetaOntology.
+        :param id: The id of this MetaOntology.
         :type: str
         """
 
-        self._iri = iri
+        self._id = id
 
     @property
-    def name(self):
+    def dcttitle(self):
         """
-        Gets the name of this MetaOntology.
+        Gets the dcttitle of this MetaOntology.
 
-        :return: The name of this MetaOntology.
+        :return: The dcttitle of this MetaOntology.
         :rtype: str
         """
-        return self._name
+        return self._dcttitle
 
-    @name.setter
-    def name(self, name):
+    @dcttitle.setter
+    def dcttitle(self, dcttitle):
         """
-        Sets the name of this MetaOntology.
+        Sets the dcttitle of this MetaOntology.
 
-        :param name: The name of this MetaOntology.
+        :param dcttitle: The dcttitle of this MetaOntology.
         :type: str
         """
 
-        self._name = name
+        self._dcttitle = dcttitle
 
     @property
-    def description(self):
+    def dctdescription(self):
         """
-        Gets the description of this MetaOntology.
+        Gets the dctdescription of this MetaOntology.
 
-        :return: The description of this MetaOntology.
+        :return: The dctdescription of this MetaOntology.
         :rtype: str
         """
-        return self._description
+        return self._dctdescription
 
-    @description.setter
-    def description(self, description):
+    @dctdescription.setter
+    def dctdescription(self, dctdescription):
         """
-        Sets the description of this MetaOntology.
+        Sets the dctdescription of this MetaOntology.
 
-        :param description: The description of this MetaOntology.
+        :param dctdescription: The dctdescription of this MetaOntology.
         :type: str
         """
 
-        self._description = description
+        self._dctdescription = dctdescription
 
     @property
-    def acronym(self):
+    def omvacronym(self):
         """
-        Gets the acronym of this MetaOntology.
+        Gets the omvacronym of this MetaOntology.
 
-        :return: The acronym of this MetaOntology.
+        :return: The omvacronym of this MetaOntology.
         :rtype: str
         """
-        return self._acronym
+        return self._omvacronym
 
-    @acronym.setter
-    def acronym(self, acronym):
+    @omvacronym.setter
+    def omvacronym(self, omvacronym):
         """
-        Sets the acronym of this MetaOntology.
+        Sets the omvacronym of this MetaOntology.
 
-        :param acronym: The acronym of this MetaOntology.
+        :param omvacronym: The omvacronym of this MetaOntology.
         :type: str
         """
 
-        self._acronym = acronym
+        self._omvacronym = omvacronym
 
     @property
-    def version(self):
+    def owlversion_info(self):
         """
-        Gets the version of this MetaOntology.
+        Gets the owlversion_info of this MetaOntology.
 
-        :return: The version of this MetaOntology.
+        :return: The owlversion_info of this MetaOntology.
         :rtype: str
         """
-        return self._version
+        return self._owlversion_info
 
-    @version.setter
-    def version(self, version):
+    @owlversion_info.setter
+    def owlversion_info(self, owlversion_info):
         """
-        Sets the version of this MetaOntology.
+        Sets the owlversion_info of this MetaOntology.
 
-        :param version: The version of this MetaOntology.
+        :param owlversion_info: The owlversion_info of this MetaOntology.
         :type: str
         """
 
-        self._version = version
+        self._owlversion_info = owlversion_info
 
     @property
-    def date(self):
+    def dctmodified(self):
         """
-        Gets the date of this MetaOntology.
+        Gets the dctmodified of this MetaOntology.
 
-        :return: The date of this MetaOntology.
+        :return: The dctmodified of this MetaOntology.
         :rtype: str
         """
-        return self._date
+        return self._dctmodified
 
-    @date.setter
-    def date(self, date):
+    @dctmodified.setter
+    def dctmodified(self, dctmodified):
         """
-        Sets the date of this MetaOntology.
+        Sets the dctmodified of this MetaOntology.
 
-        :param date: The date of this MetaOntology.
+        :param dctmodified: The dctmodified of this MetaOntology.
         :type: str
         """
 
-        self._date = date
+        self._dctmodified = dctmodified
 
     def to_dict(self):
         """

@@ -17,7 +17,6 @@ from __future__ import absolute_import
 from .models.concept import Concept
 from .models.concepts import Concepts
 from .models.error import Error
-from .models.jsonld_id import JsonldId
 from .models.ontologies import Ontologies
 from .models.ontology import Ontology
 from .models.repositories import Repositories

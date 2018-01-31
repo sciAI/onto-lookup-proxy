@@ -16,7 +16,7 @@ tags:
 schemes:
 - "http"
 paths:
-  /repository:
+  /repositories:
     get:
       tags:
       - "resource"
@@ -36,7 +36,7 @@ paths:
           schema:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "swagger_server.controllers.resource_controller"
-  /repository/{repository}/ontology:
+  /repositories/{repository}/ontologies:
     get:
       tags:
       - "resource"
@@ -66,7 +66,7 @@ paths:
           schema:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "swagger_server.controllers.resource_controller"
-  /repository/{repository}/ontology/{ontology}/concepts:
+  /repositories/{repository}/ontologies/{ontology}/concepts:
     get:
       tags:
       - "resource"
@@ -117,13 +117,14 @@ definitions:
   repository:
     type: "object"
     properties:
-      url:
+      '@id':
         type: "string"
-      name:
+      '@type':
         type: "string"
-      description:
+        default: "http://www.w3.org/ns/dcat#Dataset"
+      dcat:landingPage:
         type: "string"
-      version:
+      dct:title:
         type: "string"
   ontologies:
     type: "array"
@@ -132,19 +133,22 @@ definitions:
   ontology:
     type: "object"
     properties:
-      http://schema.org/repository:
-        $ref: "#/definitions/jsonld_id"
-      iri:
+      schema:includedInDataCatalog:
         type: "string"
-      name:
+      '@id':
         type: "string"
-      description:
+      '@type':
         type: "string"
-      acronym:
+        default: "http://www.w3.org/2002/07/owl#Ontology"
+      dct:title:
         type: "string"
-      version:
+      dct:description:
         type: "string"
-      date:
+      omv:acronym:
+        type: "string"
+      owl:versionInfo:
+        type: "string"
+      dct:modified:
         type: "string"
   concepts:
     type: "array"
@@ -153,21 +157,15 @@ definitions:
   concept:
     type: "object"
     properties:
-      http://schema.org/repository:
-        $ref: "#/definitions/jsonld_id"
-      http://schema.org/ontology:
-        $ref: "#/definitions/jsonld_id"
-      iri:
+      rdfs:isDefinedBy:
         type: "string"
-      label:
-        type: "string"
-      description:
-        type: "string"
-      short:
-        type: "string"
-      synonyms:
-        type: "string"
-  jsonld_id:
-    properties:
       '@id':
+        type: "string"
+      skos:prefLabel:
+        type: "string"
+      skos:definition:
+        type: "string"
+      skos:note:
+        type: "string"
+      skos:altLabel:
         type: "string"

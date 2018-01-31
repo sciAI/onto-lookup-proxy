@@ -31,121 +31,121 @@ class Repository(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'url': 'str',
-        'name': 'str',
-        'description': 'str',
-        'version': 'str'
+        'id': 'str',
+        'type': 'str',
+        'dcatlanding_page': 'str',
+        'dcttitle': 'str'
     }
 
     attribute_map = {
-        'url': 'url',
-        'name': 'name',
-        'description': 'description',
-        'version': 'version'
+        'id': '@id',
+        'type': '@type',
+        'dcatlanding_page': 'dcat:landingPage',
+        'dcttitle': 'dct:title'
     }
 
-    def __init__(self, url=None, name=None, description=None, version=None):
+    def __init__(self, id=None, type='http://www.w3.org/ns/dcat#Dataset', dcatlanding_page=None, dcttitle=None):
         """
         Repository - a model defined in Swagger
         """
 
-        self._url = None
-        self._name = None
-        self._description = None
-        self._version = None
+        self._id = None
+        self._type = None
+        self._dcatlanding_page = None
+        self._dcttitle = None
 
-        if url is not None:
-          self.url = url
-        if name is not None:
-          self.name = name
-        if description is not None:
-          self.description = description
-        if version is not None:
-          self.version = version
+        if id is not None:
+          self.id = id
+        if type is not None:
+          self.type = type
+        if dcatlanding_page is not None:
+          self.dcatlanding_page = dcatlanding_page
+        if dcttitle is not None:
+          self.dcttitle = dcttitle
 
     @property
-    def url(self):
+    def id(self):
         """
-        Gets the url of this Repository.
+        Gets the id of this Repository.
 
-        :return: The url of this Repository.
+        :return: The id of this Repository.
         :rtype: str
         """
-        return self._url
+        return self._id
 
-    @url.setter
-    def url(self, url):
+    @id.setter
+    def id(self, id):
         """
-        Sets the url of this Repository.
+        Sets the id of this Repository.
 
-        :param url: The url of this Repository.
+        :param id: The id of this Repository.
         :type: str
         """
 
-        self._url = url
+        self._id = id
 
     @property
-    def name(self):
+    def type(self):
         """
-        Gets the name of this Repository.
+        Gets the type of this Repository.
 
-        :return: The name of this Repository.
+        :return: The type of this Repository.
         :rtype: str
         """
-        return self._name
+        return self._type
 
-    @name.setter
-    def name(self, name):
+    @type.setter
+    def type(self, type):
         """
-        Sets the name of this Repository.
+        Sets the type of this Repository.
 
-        :param name: The name of this Repository.
+        :param type: The type of this Repository.
         :type: str
         """
 
-        self._name = name
+        self._type = type
 
     @property
-    def description(self):
+    def dcatlanding_page(self):
         """
-        Gets the description of this Repository.
+        Gets the dcatlanding_page of this Repository.
 
-        :return: The description of this Repository.
+        :return: The dcatlanding_page of this Repository.
         :rtype: str
         """
-        return self._description
+        return self._dcatlanding_page
 
-    @description.setter
-    def description(self, description):
+    @dcatlanding_page.setter
+    def dcatlanding_page(self, dcatlanding_page):
         """
-        Sets the description of this Repository.
+        Sets the dcatlanding_page of this Repository.
 
-        :param description: The description of this Repository.
+        :param dcatlanding_page: The dcatlanding_page of this Repository.
         :type: str
         """
 
-        self._description = description
+        self._dcatlanding_page = dcatlanding_page
 
     @property
-    def version(self):
+    def dcttitle(self):
         """
-        Gets the version of this Repository.
+        Gets the dcttitle of this Repository.
 
-        :return: The version of this Repository.
+        :return: The dcttitle of this Repository.
         :rtype: str
         """
-        return self._version
+        return self._dcttitle
 
-    @version.setter
-    def version(self, version):
+    @dcttitle.setter
+    def dcttitle(self, dcttitle):
         """
-        Sets the version of this Repository.
+        Sets the dcttitle of this Repository.
 
-        :param version: The version of this Repository.
+        :param dcttitle: The dcttitle of this Repository.
         :type: str
         """
 
-        self._version = version
+        self._dcttitle = dcttitle
 
     def to_dict(self):
         """

@@ -31,147 +31,147 @@ class MetaConcept(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'iri': 'str',
-        'label': 'str',
-        'description': 'str',
-        'short': 'str',
-        'synonyms': 'str'
+        'id': 'str',
+        'skospref_label': 'str',
+        'skosdefinition': 'str',
+        'skosnote': 'str',
+        'skosalt_label': 'str'
     }
 
     attribute_map = {
-        'iri': 'iri',
-        'label': 'label',
-        'description': 'description',
-        'short': 'short',
-        'synonyms': 'synonyms'
+        'id': '@id',
+        'skospref_label': 'skos:prefLabel',
+        'skosdefinition': 'skos:definition',
+        'skosnote': 'skos:note',
+        'skosalt_label': 'skos:altLabel'
     }
 
-    def __init__(self, iri='iri', label='label', description='description', short='short_form', synonyms='annotation.alternative_term'):
+    def __init__(self, id='iri', skospref_label='label', skosdefinition='description', skosnote='short_form', skosalt_label='annotation.alternative_term'):
         """
         MetaConcept - a model defined in Swagger
         """
 
-        self._iri = None
-        self._label = None
-        self._description = None
-        self._short = None
-        self._synonyms = None
+        self._id = None
+        self._skospref_label = None
+        self._skosdefinition = None
+        self._skosnote = None
+        self._skosalt_label = None
 
-        if iri is not None:
-          self.iri = iri
-        if label is not None:
-          self.label = label
-        if description is not None:
-          self.description = description
-        if short is not None:
-          self.short = short
-        if synonyms is not None:
-          self.synonyms = synonyms
+        if id is not None:
+          self.id = id
+        if skospref_label is not None:
+          self.skospref_label = skospref_label
+        if skosdefinition is not None:
+          self.skosdefinition = skosdefinition
+        if skosnote is not None:
+          self.skosnote = skosnote
+        if skosalt_label is not None:
+          self.skosalt_label = skosalt_label
 
     @property
-    def iri(self):
+    def id(self):
         """
-        Gets the iri of this MetaConcept.
+        Gets the id of this MetaConcept.
 
-        :return: The iri of this MetaConcept.
+        :return: The id of this MetaConcept.
         :rtype: str
         """
-        return self._iri
+        return self._id
 
-    @iri.setter
-    def iri(self, iri):
+    @id.setter
+    def id(self, id):
         """
-        Sets the iri of this MetaConcept.
+        Sets the id of this MetaConcept.
 
-        :param iri: The iri of this MetaConcept.
+        :param id: The id of this MetaConcept.
         :type: str
         """
 
-        self._iri = iri
+        self._id = id
 
     @property
-    def label(self):
+    def skospref_label(self):
         """
-        Gets the label of this MetaConcept.
+        Gets the skospref_label of this MetaConcept.
 
-        :return: The label of this MetaConcept.
+        :return: The skospref_label of this MetaConcept.
         :rtype: str
         """
-        return self._label
+        return self._skospref_label
 
-    @label.setter
-    def label(self, label):
+    @skospref_label.setter
+    def skospref_label(self, skospref_label):
         """
-        Sets the label of this MetaConcept.
+        Sets the skospref_label of this MetaConcept.
 
-        :param label: The label of this MetaConcept.
+        :param skospref_label: The skospref_label of this MetaConcept.
         :type: str
         """
 
-        self._label = label
+        self._skospref_label = skospref_label
 
     @property
-    def description(self):
+    def skosdefinition(self):
         """
-        Gets the description of this MetaConcept.
+        Gets the skosdefinition of this MetaConcept.
 
-        :return: The description of this MetaConcept.
+        :return: The skosdefinition of this MetaConcept.
         :rtype: str
         """
-        return self._description
+        return self._skosdefinition
 
-    @description.setter
-    def description(self, description):
+    @skosdefinition.setter
+    def skosdefinition(self, skosdefinition):
         """
-        Sets the description of this MetaConcept.
+        Sets the skosdefinition of this MetaConcept.
 
-        :param description: The description of this MetaConcept.
+        :param skosdefinition: The skosdefinition of this MetaConcept.
         :type: str
         """
 
-        self._description = description
+        self._skosdefinition = skosdefinition
 
     @property
-    def short(self):
+    def skosnote(self):
         """
-        Gets the short of this MetaConcept.
+        Gets the skosnote of this MetaConcept.
 
-        :return: The short of this MetaConcept.
+        :return: The skosnote of this MetaConcept.
         :rtype: str
         """
-        return self._short
+        return self._skosnote
 
-    @short.setter
-    def short(self, short):
+    @skosnote.setter
+    def skosnote(self, skosnote):
         """
-        Sets the short of this MetaConcept.
+        Sets the skosnote of this MetaConcept.
 
-        :param short: The short of this MetaConcept.
+        :param skosnote: The skosnote of this MetaConcept.
         :type: str
         """
 
-        self._short = short
+        self._skosnote = skosnote
 
     @property
-    def synonyms(self):
+    def skosalt_label(self):
         """
-        Gets the synonyms of this MetaConcept.
+        Gets the skosalt_label of this MetaConcept.
 
-        :return: The synonyms of this MetaConcept.
+        :return: The skosalt_label of this MetaConcept.
         :rtype: str
         """
-        return self._synonyms
+        return self._skosalt_label
 
-    @synonyms.setter
-    def synonyms(self, synonyms):
+    @skosalt_label.setter
+    def skosalt_label(self, skosalt_label):
         """
-        Sets the synonyms of this MetaConcept.
+        Sets the skosalt_label of this MetaConcept.
 
-        :param synonyms: The synonyms of this MetaConcept.
+        :param skosalt_label: The skosalt_label of this MetaConcept.
         :type: str
         """
 
-        self._synonyms = synonyms
+        self._skosalt_label = skosalt_label
 
     def to_dict(self):
         """

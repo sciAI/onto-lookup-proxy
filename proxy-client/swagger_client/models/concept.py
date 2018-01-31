@@ -31,199 +31,173 @@ class Concept(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'httpschema_orgrepository': 'JsonldId',
-        'httpschema_orgontology': 'JsonldId',
-        'iri': 'str',
-        'label': 'str',
-        'description': 'object',
-        'short': 'str',
-        'synonyms': 'object'
+        'rdfsis_defined_by': 'str',
+        'id': 'str',
+        'skospref_label': 'str',
+        'skosdefinition': 'str',
+        'skosnote': 'str',
+        'skosalt_label': 'str'
     }
 
     attribute_map = {
-        'httpschema_orgrepository': 'http://schema.org/repository',
-        'httpschema_orgontology': 'http://schema.org/ontology',
-        'iri': 'iri',
-        'label': 'label',
-        'description': 'description',
-        'short': 'short',
-        'synonyms': 'synonyms'
+        'rdfsis_defined_by': 'rdfs:isDefinedBy',
+        'id': '@id',
+        'skospref_label': 'skos:prefLabel',
+        'skosdefinition': 'skos:definition',
+        'skosnote': 'skos:note',
+        'skosalt_label': 'skos:altLabel'
     }
 
-    def __init__(self, httpschema_orgrepository=None, httpschema_orgontology=None, iri=None, label=None, description=None, short=None, synonyms=None):
+    def __init__(self, rdfsis_defined_by=None, id=None, skospref_label=None, skosdefinition=None, skosnote=None, skosalt_label=None):
         """
         Concept - a model defined in Swagger
         """
 
-        self._httpschema_orgrepository = None
-        self._httpschema_orgontology = None
-        self._iri = None
-        self._label = None
-        self._description = None
-        self._short = None
-        self._synonyms = None
+        self._rdfsis_defined_by = None
+        self._id = None
+        self._skospref_label = None
+        self._skosdefinition = None
+        self._skosnote = None
+        self._skosalt_label = None
 
-        if httpschema_orgrepository is not None:
-          self.httpschema_orgrepository = httpschema_orgrepository
-        if httpschema_orgontology is not None:
-          self.httpschema_orgontology = httpschema_orgontology
-        if iri is not None:
-          self.iri = iri
-        if label is not None:
-          self.label = label
-        if description is not None:
-          self.description = description
-        if short is not None:
-          self.short = short
-        if synonyms is not None:
-          self.synonyms = synonyms
+        if rdfsis_defined_by is not None:
+          self.rdfsis_defined_by = rdfsis_defined_by
+        if id is not None:
+          self.id = id
+        if skospref_label is not None:
+          self.skospref_label = skospref_label
+        if skosdefinition is not None:
+          self.skosdefinition = skosdefinition
+        if skosnote is not None:
+          self.skosnote = skosnote
+        if skosalt_label is not None:
+          self.skosalt_label = skosalt_label
 
     @property
-    def httpschema_orgrepository(self):
+    def rdfsis_defined_by(self):
         """
-        Gets the httpschema_orgrepository of this Concept.
+        Gets the rdfsis_defined_by of this Concept.
 
-        :return: The httpschema_orgrepository of this Concept.
-        :rtype: JsonldId
-        """
-        return self._httpschema_orgrepository
-
-    @httpschema_orgrepository.setter
-    def httpschema_orgrepository(self, httpschema_orgrepository):
-        """
-        Sets the httpschema_orgrepository of this Concept.
-
-        :param httpschema_orgrepository: The httpschema_orgrepository of this Concept.
-        :type: JsonldId
-        """
-
-        self._httpschema_orgrepository = httpschema_orgrepository
-
-    @property
-    def httpschema_orgontology(self):
-        """
-        Gets the httpschema_orgontology of this Concept.
-
-        :return: The httpschema_orgontology of this Concept.
-        :rtype: JsonldId
-        """
-        return self._httpschema_orgontology
-
-    @httpschema_orgontology.setter
-    def httpschema_orgontology(self, httpschema_orgontology):
-        """
-        Sets the httpschema_orgontology of this Concept.
-
-        :param httpschema_orgontology: The httpschema_orgontology of this Concept.
-        :type: JsonldId
-        """
-
-        self._httpschema_orgontology = httpschema_orgontology
-
-    @property
-    def iri(self):
-        """
-        Gets the iri of this Concept.
-
-        :return: The iri of this Concept.
+        :return: The rdfsis_defined_by of this Concept.
         :rtype: str
         """
-        return self._iri
+        return self._rdfsis_defined_by
 
-    @iri.setter
-    def iri(self, iri):
+    @rdfsis_defined_by.setter
+    def rdfsis_defined_by(self, rdfsis_defined_by):
         """
-        Sets the iri of this Concept.
+        Sets the rdfsis_defined_by of this Concept.
 
-        :param iri: The iri of this Concept.
+        :param rdfsis_defined_by: The rdfsis_defined_by of this Concept.
         :type: str
         """
 
-        self._iri = iri
+        self._rdfsis_defined_by = rdfsis_defined_by
 
     @property
-    def label(self):
+    def id(self):
         """
-        Gets the label of this Concept.
+        Gets the id of this Concept.
 
-        :return: The label of this Concept.
+        :return: The id of this Concept.
         :rtype: str
         """
-        return self._label
+        return self._id
 
-    @label.setter
-    def label(self, label):
+    @id.setter
+    def id(self, id):
         """
-        Sets the label of this Concept.
+        Sets the id of this Concept.
 
-        :param label: The label of this Concept.
+        :param id: The id of this Concept.
         :type: str
         """
 
-        self._label = label
+        self._id = id
 
     @property
-    def description(self):
+    def skospref_label(self):
         """
-        Gets the description of this Concept.
+        Gets the skospref_label of this Concept.
 
-        :return: The description of this Concept.
-        :rtype: object
-        """
-        return self._description
-
-    @description.setter
-    def description(self, description):
-        """
-        Sets the description of this Concept.
-
-        :param description: The description of this Concept.
-        :type: object
-        """
-
-        self._description = description
-
-    @property
-    def short(self):
-        """
-        Gets the short of this Concept.
-
-        :return: The short of this Concept.
+        :return: The skospref_label of this Concept.
         :rtype: str
         """
-        return self._short
+        return self._skospref_label
 
-    @short.setter
-    def short(self, short):
+    @skospref_label.setter
+    def skospref_label(self, skospref_label):
         """
-        Sets the short of this Concept.
+        Sets the skospref_label of this Concept.
 
-        :param short: The short of this Concept.
+        :param skospref_label: The skospref_label of this Concept.
         :type: str
         """
 
-        self._short = short
+        self._skospref_label = skospref_label
 
     @property
-    def synonyms(self):
+    def skosdefinition(self):
         """
-        Gets the synonyms of this Concept.
+        Gets the skosdefinition of this Concept.
 
-        :return: The synonyms of this Concept.
-        :rtype: object
+        :return: The skosdefinition of this Concept.
+        :rtype: str
         """
-        return self._synonyms
+        return self._skosdefinition
 
-    @synonyms.setter
-    def synonyms(self, synonyms):
+    @skosdefinition.setter
+    def skosdefinition(self, skosdefinition):
         """
-        Sets the synonyms of this Concept.
+        Sets the skosdefinition of this Concept.
 
-        :param synonyms: The synonyms of this Concept.
-        :type: object
+        :param skosdefinition: The skosdefinition of this Concept.
+        :type: str
         """
 
-        self._synonyms = synonyms
+        self._skosdefinition = skosdefinition
+
+    @property
+    def skosnote(self):
+        """
+        Gets the skosnote of this Concept.
+
+        :return: The skosnote of this Concept.
+        :rtype: str
+        """
+        return self._skosnote
+
+    @skosnote.setter
+    def skosnote(self, skosnote):
+        """
+        Sets the skosnote of this Concept.
+
+        :param skosnote: The skosnote of this Concept.
+        :type: str
+        """
+
+        self._skosnote = skosnote
+
+    @property
+    def skosalt_label(self):
+        """
+        Gets the skosalt_label of this Concept.
+
+        :return: The skosalt_label of this Concept.
+        :rtype: str
+        """
+        return self._skosalt_label
+
+    @skosalt_label.setter
+    def skosalt_label(self, skosalt_label):
+        """
+        Sets the skosalt_label of this Concept.
+
+        :param skosalt_label: The skosalt_label of this Concept.
+        :type: str
+        """
+
+        self._skosalt_label = skosalt_label
 
     def to_dict(self):
         """

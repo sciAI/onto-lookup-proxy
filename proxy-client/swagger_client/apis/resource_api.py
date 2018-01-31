@@ -134,7 +134,7 @@ class ResourceApi(object):
         # Authentication setting
         auth_settings = []
 
-        return self.api_client.call_api('/repository/{repository}/ontology/{ontology}/concepts', 'GET',
+        return self.api_client.call_api('/repositories/{repository}/ontologies/{ontology}/concepts', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -236,14 +236,14 @@ class ResourceApi(object):
         # Authentication setting
         auth_settings = []
 
-        return self.api_client.call_api('/repository/{repository}/ontology', 'GET',
+        return self.api_client.call_api('/repositories/{repository}/ontologies', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='list[Ontology]',
+                                        response_type='list[object]',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -326,14 +326,14 @@ class ResourceApi(object):
         # Authentication setting
         auth_settings = []
 
-        return self.api_client.call_api('/repository', 'GET',
+        return self.api_client.call_api('/repositories', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='list[Repository]',
+                                        response_type='list[object]',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

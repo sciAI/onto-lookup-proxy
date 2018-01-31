@@ -51,10 +51,10 @@ meta:
     ontology:
       type: "object"
       properties:
-        iri:
+        "@id":
           type: "string"
           default: "config.id"
-        name:
+        "dct:title":
           type: "string"
           default: "config.title"
         ...
@@ -64,10 +64,10 @@ meta:
     concept:
       type: "object"
       properties:
-        iri:
+        "@id":
           type: "string"
           default: "iri"
-        label:
+        "skos:prefLabel":
           type: "string"
           default: "label"
         ...
@@ -80,37 +80,37 @@ Structure of properties is actually defined in OpenAPI [descriptor](https://git.
 definitions:
   repository:
     properties:
-      - url
-      - name
-      - description
-      - version
+      - "@id"
+      - "@type"
+      - "dcat:landingPage"
+      - "dct:title"
   ontology:
     properties:
-      - http://schema.org/repository
-      - iri
-      - name
-      - description
-      - acronym
-      - version
-      - date
+      - "schema:includedInDataCatalog"
+      - "@id"
+      - "@type"
+      - "dct:title"
+      - "dct:description"
+      - "omv:acronym"
+      - "owl:versionInfo"
+      - "dct:modified"
   concept:
     properties:
-      - http://schema.org/repository
-      - http://schema.org/ontology
-      - iri
-      - label
-      - description
-      - short
-      - synonyms
+      - "rdfs:isDefinedBy"
+      - "@id"
+      - "skos:prefLabel"
+      - "skos:definition"
+      - "skos:note"
+      - "skos:altLabel"
 ```
 
 ## Demo:
 
 Server:
-- get sample repositories: http://176.31.200.199/repository
-- get sample ontologies: http://176.31.200.199/repository/ols/ontology
+- get sample repositories: http://176.31.200.199/repositories
+- get sample ontologies: http://176.31.200.199/repositories/ols/ontologies
   - compare to https://www.ebi.ac.uk/ols/api/ontologies
-- get sample concepts: http://176.31.200.199/repository/ols/ontology/aero/concepts
+- get sample concepts: http://176.31.200.199/repositories/ols/ontologies/aero/concepts
   - compare to https://www.ebi.ac.uk/ols/api/ontologies/aero/terms
 
 Client:

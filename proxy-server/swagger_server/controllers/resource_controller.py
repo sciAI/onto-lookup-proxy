@@ -41,7 +41,7 @@ def concepts(repository, ontology, plain=None):
     :param plain: 
     :type plain: bool
 
-    :rtype: Concepts
+    :rtype: List[Concept]
     """
     # return 'do some magic!'
 
@@ -90,9 +90,6 @@ def concepts(repository, ontology, plain=None):
                     continue
                 get_value = operator.attrgetter(path)
                 setattr(resp, attr, get_value(item))
-                # 
-                resp.httpschema_orgrepository = JsonldId(id=repository)
-                resp.httpschema_orgontology = JsonldId(id=ontology)
             obj.append(resp)
 
     except AttributeError as e:
@@ -114,7 +111,7 @@ def ontologies(repository, plain=None):
     :param plain: 
     :type plain: bool
 
-    :rtype: Ontologies
+    :rtype: List[Ontology]
     """
     # return 'do some magic!'
 
@@ -153,7 +150,7 @@ def ontologies(repository, plain=None):
                 get_value = operator.attrgetter(path)
                 setattr(resp, attr, get_value(item))
                 # 
-                resp.httpschema_orgrepository = JsonldId(id=repository)
+                resp.schemaincluded_in_data_catalog = repository
             obj.append(resp)
 
     except AttributeError as e:
@@ -171,13 +168,14 @@ def repositories():
     
     
 
-    :rtype: Repositories
+    :rtype: List[Repository]
     """
     # return 'do some magic!'
     obj = []
 
     for item, module in iteritems(modules):
-        resp = Repository(name=item, url=module.configuration.host)
+        resp = Repository(id=item, dcttitle=item,
+            dcatlanding_page=module.configuration.host)
         obj.append(resp)
 
     return obj
