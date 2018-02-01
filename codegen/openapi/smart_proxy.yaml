@@ -101,6 +101,34 @@ paths:
           schema:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+  /repositories/{repository}/ontologies/{ontology}/metadata:
+    get:
+      tags:
+      - "resource"
+      summary: ""
+      description: ""
+      operationId: "metadata"
+      parameters:
+      - name: "repository"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.resource_controller"
 definitions:
   error:
     type: "object"

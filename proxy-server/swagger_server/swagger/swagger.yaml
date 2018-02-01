@@ -6,7 +6,7 @@ info:
   title: "PROXY OLS API"
   contact:
     email: "apiteam@swagger.io"
-host: "176.31.200.202:8000"
+host: "176.31.200.199:80"
 basePath: "/"
 tags:
 - name: "resource"
@@ -49,11 +49,6 @@ paths:
         description: ""
         required: true
         type: "string"
-      - name: "plain"
-        in: "query"
-        description: ""
-        required: false
-        type: "boolean"
       responses:
         200:
           description: "OK"
@@ -84,11 +79,6 @@ paths:
         description: ""
         required: true
         type: "string"
-      - name: "plain"
-        in: "query"
-        description: ""
-        required: false
-        type: "boolean"
       responses:
         200:
           description: "OK"
@@ -96,6 +86,35 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/concept"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+  /repositories/{repository}/ontologies/{ontology}/metadata:
+    get:
+      tags:
+      - "resource"
+      summary: ""
+      description: ""
+      operationId: "metadata"
+      parameters:
+      - name: "repository"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            properties: {}
         400:
           description: "Bad Request"
           schema:

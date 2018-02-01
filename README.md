@@ -109,13 +109,23 @@ definitions:
 Server:
 - get sample repositories: http://176.31.200.199/repositories
 - get sample ontologies: http://176.31.200.199/repositories/ols/ontologies
-  - compare to https://www.ebi.ac.uk/ols/api/ontologies
 - get sample concepts: http://176.31.200.199/repositories/ols/ontologies/aero/concepts
-  - compare to https://www.ebi.ac.uk/ols/api/ontologies/aero/terms
 
 Client:
 - start processing: http://176.31.200.202/
 - check results: see `terms` collection within `proxy-db` database (mongo)
+
+### Repositories:
+
+The following repositories are supported:
+- EMBL-EBI OLS
+  - http://176.31.200.199/repositories/ols/ontologies
+    compare to https://www.ebi.ac.uk/ols/api/ontologies
+  - http://176.31.200.199/repositories/ols/ontologies/aero/concepts
+    compare to https://www.ebi.ac.uk/ols/api/ontologies/aero/terms
+- NCBO BioPortal (apikey=e7f84ef1-1530-4a02-85c6-6f907ab44ce8)
+  - http://176.31.200.199/repositories/bioportal/ontologies
+  - http://176.31.200.199/repositories/bioportal/ontologies/ICO/concepts
 
 ### Technical data
 

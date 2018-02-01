@@ -30,7 +30,7 @@ for item in os.listdir(rep_path):
     modules.setdefault(module.__name__, module)
 
 
-def concepts(repository, ontology, plain=None):
+def concepts(repository, ontology):
     """
     
     
@@ -38,8 +38,6 @@ def concepts(repository, ontology, plain=None):
     :type repository: str
     :param ontology: 
     :type ontology: str
-    :param plain: 
-    :type plain: bool
 
     :rtype: List[Concept]
     """
@@ -60,12 +58,14 @@ def concepts(repository, ontology, plain=None):
         path = module.Meta().concept_xpath
         get_objects = operator.attrgetter(path)
 
-        concepts = get_objects(response)
+        concepts = get_objects(response) if path else response
 
-        if response.page and response.page.total_pages:
-            next_page = response.page.number + 1
-            total_pages = response.page.total_pages
-            # test
+        page = getattr(response, 'page', False)
+        if page:
+            next_page = getattr(page, 'number', response.page) + 1
+            total_pages = getattr(page, 'total_pages',
+                getattr(response, 'page_count', 0))
+            # limit for PoC only!
             if total_pages > 100:
                 return []
             for page in range(next_page, total_pages):
@@ -101,15 +101,39 @@ def concepts(repository, ontology, plain=None):
 
     return obj
 
-
-def ontologies(repository, plain=None):
+def metadata(repository, ontology):
     """
     
     
     :param repository: 
     :type repository: str
-    :param plain: 
-    :type plain: bool
+    :param ontology: 
+    :type ontology: str
+
+    :rtype: object
+    """
+    # return 'do some magic!'
+
+    module = modules.get(repository)
+
+    if not module:
+        return Error(error='No repository', status='404')
+
+    try:
+        module_api = module.ResourcesApi()
+        response = module_api.ontology(ontology)
+
+    except module.rest.ApiException as e:
+        print("Exception when calling API: %s\n" % e)
+
+    return response.to_dict()
+
+def ontologies(repository):
+    """
+    
+    
+    :param repository: 
+    :type repository: str
 
     :rtype: List[Ontology]
     """
@@ -130,11 +154,14 @@ def ontologies(repository, plain=None):
         path = module.Meta().ontology_xpath
         get_ontologies = operator.attrgetter(path)
 
-        ontologies = get_ontologies(response)
+        ontologies = get_ontologies(response) if path else response
 
-        if response.page and response.page.total_pages:
-            next_page = response.page.number + 1
-            total_pages = response.page.total_pages
+        page = getattr(response, 'page', False)
+        if page:
+            print(page, page.total_pages, getattr(page, 'total_pages', '-'))
+            next_page = getattr(page, 'number', response.page) + 1
+            total_pages = getattr(page, 'total_pages',
+                getattr(response, 'page_count', 0))
             for page in range(next_page, total_pages):
                 _next = module_api.ontologies(page=page)
                 ontologies.extend(get_ontologies(_next))
@@ -149,7 +176,7 @@ def ontologies(repository, plain=None):
                     continue
                 get_value = operator.attrgetter(path)
                 setattr(resp, attr, get_value(item))
-                # 
+                #
                 resp.schemaincluded_in_data_catalog = repository
             obj.append(resp)
 
