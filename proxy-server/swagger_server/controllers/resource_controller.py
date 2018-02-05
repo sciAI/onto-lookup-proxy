@@ -12,23 +12,98 @@ from typing import List, Dict
 from six import iteritems
 from ..util import deserialize_date, deserialize_datetime
 
+from . import harvester
+
 import json
 import os
 import imp
 import operator
 import time
+import threading
+import queue
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 rep_path = os.path.join(dir_path, 'repositories')
+
 modules = {}
+threads = {}
+queues = {}
+
 
 for item in os.listdir(rep_path):
     path = os.path.join(rep_path, item)
     fp, pathname, description = imp.find_module(path);
+
     module = imp.load_module(item, fp, pathname, description);
     modules.setdefault(module.__name__, module)
+    queues.setdefault(module.__name__, queue.Queue())
 
+
+def __concepts(module):
+    """
+    
+    
+    :param module: 
+    """
+    _queue = queues.get(module.__name__)
+
+    while True:
+        remote, ontology = _queue.get()
+        remote = 'http://' + remote + ''
+
+        try:
+            module_api = module.ResourcesApi()
+            client_api = harvester.ResourceApi(
+                harvester.ApiClient(host=remote))
+
+            path = module.Meta().concept_xpath
+            meta = module.MetaConcept()
+
+            get_objects = operator.attrgetter(path)
+
+            pages = list(range(0, 1))
+
+            for page in pages:
+                if not page:
+                    _next = module_api.concepts(ontology)
+                    _page_count = getattr(_next, 'page_count', 0)
+
+                    if _page_count:
+                        pages.extend(list(range(2, _page_count + 1)))
+                    else:
+                        _page = getattr(_next, 'page', False)
+                        _total_pages = getattr(_page, 'total_pages', 0)
+                        pages.extend(list(range(1, _total_pages)))
+                else:
+                    _next = module_api.concepts(ontology, page=page)
+
+                concepts = get_objects(_next) if path else response
+
+                for item in concepts:
+                    resp = Concept()
+                    for attr, _obj in resp.swagger_types.items():
+                        path = getattr(meta, attr, False)
+                        if not path:
+                            continue
+                        get_value = operator.attrgetter(path)
+                        setattr(resp, attr, get_value(item))
+
+                    client_api.insert(resp)
+
+        except AttributeError as e:
+            print("Exception when parsing API: %s\n" % e)
+        except module.rest.ApiException as e:
+            print("Exception when calling API: %s\n" % e)
+
+        print(module.__name__, ontology)
+        _queue.task_done()
+
+
+for _name, module in modules.items():
+    thread = threading.Thread(target=__concepts, args=(module, ))
+    thread.start()
+    threads.setdefault(_name, [thread])
 
 def concepts(repository, ontology):
     """
@@ -51,6 +126,16 @@ def concepts(repository, ontology):
 
     _start = time.time()
 
+    if 'Swagger-Codegen' in connexion.request.environ['HTTP_USER_AGENT']:
+        # thread = threading.Thread(target=__concepts,
+        #                           args=(connexion.request.environ,
+        #                                 module,
+        #                                 ontology))
+        # thread.start()
+        _queue = queues.get(repository)
+        _queue.put((connexion.request.environ['REMOTE_ADDR'], ontology))
+        return 'OK', 200
+
     try:
         module_api = module.ResourcesApi()
         response = module_api.concepts(ontology)
@@ -67,11 +152,11 @@ def concepts(repository, ontology):
                 getattr(response, 'page_count', 0))
             # limit for PoC only!
             if total_pages > 100:
-                return []
+                return Error(error='PoC Limit Exceeded: there are %s pages \
+                    in %s ontology' % (total_pages, ontology), status=500)
             for page in range(next_page, total_pages):
                 _next = module_api.concepts(ontology, page=page)
                 concepts.extend(get_objects(_next))
-                print('> ', page, '/', total_pages, 'in', time.time() - _start)
 
         meta = module.MetaConcept()
 
@@ -101,32 +186,6 @@ def concepts(repository, ontology):
 
     return obj
 
-def metadata(repository, ontology):
-    """
-    
-    
-    :param repository: 
-    :type repository: str
-    :param ontology: 
-    :type ontology: str
-
-    :rtype: object
-    """
-    # return 'do some magic!'
-
-    module = modules.get(repository)
-
-    if not module:
-        return Error(error='No repository', status='404')
-
-    try:
-        module_api = module.ResourcesApi()
-        response = module_api.ontology(ontology)
-
-    except module.rest.ApiException as e:
-        print("Exception when calling API: %s\n" % e)
-
-    return response.to_dict()
 
 def ontologies(repository):
     """
@@ -158,7 +217,6 @@ def ontologies(repository):
 
         page = getattr(response, 'page', False)
         if page:
-            print(page, page.total_pages, getattr(page, 'total_pages', '-'))
             next_page = getattr(page, 'number', response.page) + 1
             total_pages = getattr(page, 'total_pages',
                 getattr(response, 'page_count', 0))
@@ -206,3 +264,31 @@ def repositories():
         obj.append(resp)
 
     return obj
+
+
+def metadata(repository, ontology):
+    """
+    
+    
+    :param repository: 
+    :type repository: str
+    :param ontology: 
+    :type ontology: str
+
+    :rtype: object
+    """
+    # return 'do some magic!'
+
+    module = modules.get(repository)
+
+    if not module:
+        return Error(error='No repository', status='404')
+
+    try:
+        module_api = module.ResourcesApi()
+        response = module_api.ontology(ontology)
+
+    except module.rest.ApiException as e:
+        print("Exception when calling API: %s\n" % e)
+
+    return response.to_dict()
