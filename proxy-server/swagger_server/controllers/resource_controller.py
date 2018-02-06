@@ -78,7 +78,7 @@ def __concepts(module):
                 else:
                     _next = module_api.concepts(ontology, page=page)
 
-                concepts = get_objects(_next) if path else response
+                concepts = get_objects(_next) if path else _next
 
                 for item in concepts:
                     resp = Concept()
