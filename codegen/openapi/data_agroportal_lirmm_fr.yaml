@@ -1,0 +1,450 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "IBC AgroPortal API"
+  contact:
+    email: "apiteam@swagger.io"
+host: "data.agroportal.lirmm.fr"
+basePath: "/"
+tags:
+- name: "resources"
+  description: ""
+- name: "search"
+  description: ""
+schemes:
+- "http"
+paths:
+  /ontologies:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "ontologies"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ontology"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /ontologies/{ontology}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "ontology"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ontology"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /ontologies/{ontology}/classes:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "concepts"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/classes"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /ontologies/{ontology}/classes/{id}:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "concept"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/classes"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /search:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "search"
+      parameters:
+      - name: "q"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      - name: "ontologies"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+      - name: "type"
+        in: "query"
+        description: ""
+        type: "string"
+        enum:
+          - "class"
+          - "property"
+          - "individual"
+          - "ontology"
+      - name: "fieldList"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "iri"
+            - "label"
+            - "short_form"
+            - "obo_id"
+            - "ontology_name"
+            - "ontology_prefix"
+            - "description"
+            - "type"
+      - name: "include"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "prefLabel"
+            - "synonym"
+            - "definition"
+            - "notation"
+            - "cui"
+            - "semanticType"
+      - name: "require_exact_match"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "require_definitions"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "also_search_properties"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "also_search_obsolete"
+        in: "query"
+        description: ""
+        type: "boolean"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/classes"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+
+securityDefinitions:
+  apikey:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+definitions:
+  error:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+  links:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/link"
+      ontology:
+        $ref: "#/definitions/link"
+      children:
+        $ref: "#/definitions/link"
+      parents:
+        $ref: "#/definitions/link"
+      descendants:
+        $ref: "#/definitions/link"
+      ancestors:
+        $ref: "#/definitions/link"
+      instances:
+        $ref: "#/definitions/link"
+      tree:
+        $ref: "#/definitions/link"
+      notes:
+        $ref: "#/definitions/link"
+      mappings:
+        $ref: "#/definitions/link"
+      ui:
+        $ref: "#/definitions/link"
+      submissions:
+        $ref: "#/definitions/link"
+      properties:
+        $ref: "#/definitions/link"
+      classes:
+        $ref: "#/definitions/link"
+      roots:
+        $ref: "#/definitions/link"
+      metrics:
+        $ref: "#/definitions/link"
+      reviews:
+        $ref: "#/definitions/link"
+      groups:
+        $ref: "#/definitions/link"
+      categories:
+        $ref: "#/definitions/link"
+      projects:
+        $ref: "#/definitions/link"
+      views:
+        $ref: "#/definitions/link"
+      analytics:
+        $ref: "#/definitions/link"
+      nextPage:
+        $ref: "#/definitions/link"
+      prevPage:
+        $ref: "#/definitions/link"
+  link:
+    type: "string"
+  ontologies:
+    type: "array"
+    items:
+      $ref: "#/definitions/ontology"
+  ontology:
+    type: "object"
+    properties:
+      "@id":
+        type: "string"
+      "@type":
+        type: "string"
+      acronym:
+        type: "string"
+      name:
+        type: "string"
+      ontologyType:
+        type: "string"
+      links:
+        $ref: "#/definitions/links"
+  classes:
+    type: "object"
+    properties:
+      collection:
+        type: "array"
+        items:
+          $ref: "#/definitions/class"
+      page:
+        type: "integer"
+      pageCount:
+        type: "integer"
+      totalCount:
+        type: "integer"
+      links:
+        $ref: "#/definitions/links"
+  class:
+    type: "object"
+    properties:
+      "@id":
+        type: "string"
+      "@type":
+        type: "string"
+      definition:
+        type: "array"
+        items:
+          type: "string"
+      synonym:
+        type: "object"
+      prefLabel:
+        type: "string"
+      links:
+        $ref: "#/definitions/links"
+  search:
+    type: "object"
+    properties:
+      responseHeader:
+        type: "object"
+      response:
+        type: "object"
+        properties:
+          numFound:
+            type: "integer"
+          start:
+            type: "integer"
+          docs:
+            type: "array"
+            items:
+              $ref: "#/definitions/class"
+      facet_counts:
+        type: "object"
+      highlighting:
+        type: "object"
+  meta:
+    type: "object"
+    properties:
+      ontology_xpath:
+        type: "string"
+        default: ""
+      ontology:
+        type: "object"
+        properties:
+          "@id":
+            type: "string"
+            default: "id"
+          "dct:title":
+            type: "string"
+            default: "name"
+          "dct:description":
+            type: "string"
+            default: ""
+          "omv:acronym":
+            type: "string"
+            default: "acronym"
+          "owl:versionInfo":
+            type: "string"
+            default: ""
+          "dct:modified":
+            type: "string"
+            default: ""
+      concept_xpath:
+        type: "string"
+        default: "collection"
+      concept:
+        type: "object"
+        properties:
+          "@id":
+            type: "string"
+            default: "id"
+          "rdfs:isDefinedBy":
+            type: "string"
+            default: "links.ontology"
+          "skos:prefLabel":
+            type: "string"
+            default: "pref_label"
+          "skos:definition":
+            type: "string"
+            default: "definition"
+          "skos:note":
+            type: "string"
+            default: ""
+          "skos:altLabel":
+            type: "string"
+            default: "synonym"
+      pages:
+        type: "object"
+        properties:
+          "self":
+            type: "string"
+            default: "page"
+          "next":
+            type: "string"
+            default: "nextPage"
+          "pages":
+            type: "string"
+            default: "pageCount"
+externalDocs:
+  description: ""
+  url: "http://data.agroportal.lirmm.fr/"
