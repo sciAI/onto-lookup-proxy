@@ -35,6 +35,8 @@ class Meta(object):
         'ontology': 'MetaOntology',
         'concept_xpath': 'str',
         'concept': 'MetaConcept',
+        'search_xpath': 'str',
+        'search': 'MetaConcept',
         'pages': 'MetaPages'
     }
 
@@ -43,10 +45,12 @@ class Meta(object):
         'ontology': 'ontology',
         'concept_xpath': 'concept_xpath',
         'concept': 'concept',
+        'search_xpath': 'search_xpath',
+        'search': 'search',
         'pages': 'pages'
     }
 
-    def __init__(self, ontology_xpath='', ontology=None, concept_xpath='collection', concept=None, pages=None):
+    def __init__(self, ontology_xpath='', ontology=None, concept_xpath='collection', concept=None, search_xpath='collection', search=None, pages=None):
         """
         Meta - a model defined in Swagger
         """
@@ -55,6 +59,8 @@ class Meta(object):
         self._ontology = None
         self._concept_xpath = None
         self._concept = None
+        self._search_xpath = None
+        self._search = None
         self._pages = None
 
         if ontology_xpath is not None:
@@ -65,6 +71,10 @@ class Meta(object):
           self.concept_xpath = concept_xpath
         if concept is not None:
           self.concept = concept
+        if search_xpath is not None:
+          self.search_xpath = search_xpath
+        if search is not None:
+          self.search = search
         if pages is not None:
           self.pages = pages
 
@@ -151,6 +161,48 @@ class Meta(object):
         """
 
         self._concept = concept
+
+    @property
+    def search_xpath(self):
+        """
+        Gets the search_xpath of this Meta.
+
+        :return: The search_xpath of this Meta.
+        :rtype: str
+        """
+        return self._search_xpath
+
+    @search_xpath.setter
+    def search_xpath(self, search_xpath):
+        """
+        Sets the search_xpath of this Meta.
+
+        :param search_xpath: The search_xpath of this Meta.
+        :type: str
+        """
+
+        self._search_xpath = search_xpath
+
+    @property
+    def search(self):
+        """
+        Gets the search of this Meta.
+
+        :return: The search of this Meta.
+        :rtype: MetaConcept
+        """
+        return self._search
+
+    @search.setter
+    def search(self, search):
+        """
+        Sets the search of this Meta.
+
+        :param search: The search of this Meta.
+        :type: MetaConcept
+        """
+
+        self._search = search
 
     @property
     def pages(self):

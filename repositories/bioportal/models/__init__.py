@@ -21,6 +21,7 @@ from .links import Links
 from .meta import Meta
 from .meta_concept import MetaConcept
 from .meta_ontology import MetaOntology
+from .meta_pages import MetaPages
 from .model_class import ModelClass
 from .ontologies import Ontologies
 from .ontology import Ontology

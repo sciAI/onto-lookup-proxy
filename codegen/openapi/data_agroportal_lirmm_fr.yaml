@@ -433,6 +433,30 @@ definitions:
           "skos:altLabel":
             type: "string"
             default: "synonym"
+      search_xpath:
+        type: "string"
+        default: "collection"
+      search:
+        type: "object"
+        properties:
+          "@id":
+            type: "string"
+            default: "id"
+          "rdfs:isDefinedBy":
+            type: "string"
+            default: "links.ontology"
+          "skos:prefLabel":
+            type: "string"
+            default: "pref_label"
+          "skos:definition":
+            type: "string"
+            default: "definition"
+          "skos:note":
+            type: "string"
+            default: ""
+          "skos:altLabel":
+            type: "string"
+            default: "synonym"
       pages:
         type: "object"
         properties:

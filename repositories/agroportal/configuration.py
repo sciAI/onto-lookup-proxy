@@ -53,7 +53,7 @@ class Configuration(object):
 
         # Authentication Settings
         # dict to store API key(s)
-        self.api_key = {'Authorization': 'apikey token=b6c10be7-4024-409a-8f43-4c164838abe0'}
+        self.api_key = {'Authorization': 'apikey token=587de5a7-22b9-4a9d-8c93-4bc4a40ebacf'}
         # dict to store API prefix (e.g. Bearer)
         self.api_key_prefix = {}
         # Username for HTTP basic authentication

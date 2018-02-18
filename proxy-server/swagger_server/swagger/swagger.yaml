@@ -120,6 +120,31 @@ paths:
           schema:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "swagger_server.controllers.resource_controller"
+  /search:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "search"
+      parameters:
+      - name: "query"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/search"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+      x-swagger-router-controller: "swagger_server.controllers.search_controller"
 definitions:
   error:
     type: "object"
@@ -188,3 +213,12 @@ definitions:
         type: "string"
       skos:altLabel:
         type: "string"
+  search:
+    type: "object"
+    properties:
+      query:
+        type: "string"
+      results:
+        type: "array"
+        items:
+          $ref: "#/definitions/concept"

@@ -2,7 +2,6 @@ import connexion
 from swagger_server.models.concept import Concept
 from swagger_server.models.concepts import Concepts
 from swagger_server.models.error import Error
-from swagger_server.models.jsonld_id import JsonldId
 from swagger_server.models.ontologies import Ontologies
 from swagger_server.models.ontology import Ontology
 from swagger_server.models.repositories import Repositories
@@ -104,6 +103,7 @@ for _name, module in modules.items():
     thread = threading.Thread(target=__concepts, args=(module, ))
     thread.start()
     threads.setdefault(_name, [thread])
+
 
 def concepts(repository, ontology):
     """

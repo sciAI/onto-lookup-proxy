@@ -795,6 +795,42 @@ definitions:
           "skos:altLabel":
             type: "string"
             default: "annotation.alternative_term"
+      search_xpath:
+        type: "string"
+        default: "response.docs"
+      search:
+        type: "object"
+        properties:
+          "@id":
+            type: "string"
+            default: "iri"
+          "rdfs:isDefinedBy":
+            type: "string"
+            default: "ontology_name"
+          "skos:prefLabel":
+            type: "string"
+            default: "label"
+          "skos:definition":
+            type: "string"
+            default: "description"
+          "skos:note":
+            type: "string"
+            default: "short_form"
+          "skos:altLabel":
+            type: "string"
+            default: ""
+      pages:
+        type: "object"
+        properties:
+          "self":
+            type: "string"
+            default: "page.number"
+          "next":
+            type: "string"
+            default: ""
+          "pages":
+            type: "string"
+            default: "page.size"
 externalDocs:
   description: ""
   url: "https://www.ebi.ac.uk/"

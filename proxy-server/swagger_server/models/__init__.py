@@ -9,3 +9,4 @@ from .ontologies import Ontologies
 from .ontology import Ontology
 from .repositories import Repositories
 from .repository import Repository
+from .search import Search
