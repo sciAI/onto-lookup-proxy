@@ -145,6 +145,35 @@ paths:
           schema:
             $ref: "#/definitions/error"
       x-swagger-router-controller: "swagger_server.controllers.search_controller"
+  /select:
+    get:
+      tags:
+      - "search"
+      summary: ""
+      description: ""
+      operationId: "select"
+      parameters:
+      - name: "ontology"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "query"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/search"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
 definitions:
   error:
     type: "object"
@@ -221,4 +250,17 @@ definitions:
       results:
         type: "array"
         items:
-          $ref: "#/definitions/concept"
+          type: "object"
+          properties:
+            "repository":
+              type: "string"
+            "concept":
+              $ref: "#/definitions/concept"
+            "children":
+              type: "array"
+              items:
+                $ref: "#/definitions/concept"
+            "parents":
+              type: "array"
+              items:
+                $ref: "#/definitions/concept"

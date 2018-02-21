@@ -24,6 +24,19 @@ class TestSearchController(BaseTestCase):
                                     query_string=query_string)
         self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
 
+    def test_select(self):
+        """
+        Test case for select
+
+        
+        """
+        query_string = [('ontology', 'ontology_example'),
+                        ('iri', 'iri_example')]
+        response = self.client.open('//select',
+                                    method='GET',
+                                    query_string=query_string)
+        self.assert200(response, "Response body is : " + response.data.decode('utf-8'))
+
 
 if __name__ == '__main__':
     import unittest

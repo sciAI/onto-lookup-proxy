@@ -133,7 +133,83 @@ paths:
         200:
           description: "OK"
           schema:
+            $ref: "#/definitions/class"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /ontologies/{ontology}/classes/{id}/children:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "children"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
             $ref: "#/definitions/classes"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+      security:
+      - apikey: []
+  /ontologies/{ontology}/classes/{id}/parents:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "parents"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/class"
         400:
           description: "Bad Request"
           schema:

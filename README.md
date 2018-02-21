@@ -36,6 +36,8 @@ Normally, once user starts the `harvester`...
 List of OpenAPI [descriptors](https://git.xpansa.com/csc/harvester-demo/tree/master/codegen/openapi) used for smart proxy project:
 - `smart_proxy.yaml` describes API for the proxy server
 - `ebi_ac_uk_ols.yaml` describes API for the EMBL-EBI Ontology Lookup Service (and includes mappings for data transfiguration)
+- `data_bioontology_org.yaml` describes API for the NCBO BioPortal (incl. mappings for data transfiguration)
+- `data_agroportal_lirmm_fr.yaml` describes API for the IBC AgroPortal (incl. mappings for data transfiguration)
 
 ### Mapping
 
@@ -104,6 +106,32 @@ definitions:
       - "skos:altLabel"
 ```
 
+## Experiments
+
+### Search across repositories
+
+There is endpoint to request concept description from certain ontology within all registered repositories. If user sends request '/select?ontology={ontology}&iri={iri}', the proxy returns array of concepts (including its parents and children) in the following format:
+
+```json
+{
+  "query": "",
+  "results": [
+    {
+      "children": [],
+      "concept": {
+        "@id": "",
+        "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": "",
+        "http://www.w3.org/2004/02/skos/core#altLabel": [],
+        "http://www.w3.org/2004/02/skos/core#definition": [],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": ""
+      },
+      "parents": [],
+      "repository": ""
+    },
+  ]
+}
+```
+
 ## Demo:
 
 Server:
@@ -111,6 +139,7 @@ Server:
 - get sample ontologies: http://176.31.200.199/repositories/ols/ontologies
 - get sample concepts: http://176.31.200.199/repositories/ols/ontologies/aero/concepts
 - search across repositories: http://176.31.200.199/search?query=ipomoea%20batatas
+- get concepts by IRI: http://176.31.200.199/select?ontology=GO&iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0043226
 
 Client:
 - start processing: http://176.31.200.202/
