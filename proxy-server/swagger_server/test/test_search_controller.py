@@ -31,7 +31,8 @@ class TestSearchController(BaseTestCase):
         
         """
         query_string = [('ontology', 'ontology_example'),
-                        ('iri', 'iri_example')]
+                        ('iri', 'iri_example'),
+                        ('fields', 'fields_example')]
         response = self.client.open('//select',
                                     method='GET',
                                     query_string=query_string)

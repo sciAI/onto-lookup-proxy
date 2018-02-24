@@ -98,7 +98,7 @@ def search(query):
     return Search(query=query, results=obj)
 
 
-def select(ontology, iri):
+def select(ontology, iri, fields=[]):
     """
     
     
@@ -106,6 +106,8 @@ def select(ontology, iri):
     :type ontology: str
     :param iri: 
     :type iri: str
+    :param fields: 
+    :type fields: List[str]
 
     :rtype: List[Search]
     """
@@ -137,11 +139,16 @@ def select(ontology, iri):
                     setattr(resp, attr, get_value(response))
                 except:
                     pass
+            children = select_children(module, ontology, iri) \
+                if 'children' in fields else []
+            parents = select_parents(module, ontology, iri) \
+                if 'parents' in fields else []
+
             obj.append(SearchResults(
                 repository=module.__name__,
                 concept=resp,
-                children=select_children(module, ontology, iri),
-                parents=select_parents(module, ontology, iri)
+                children=children,
+                parents=parents,
             ))
 
         except AttributeError as e:

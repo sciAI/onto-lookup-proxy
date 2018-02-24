@@ -163,6 +163,17 @@ paths:
         description: ""
         required: true
         type: "string"
+      - name: "fields"
+        in: "query"
+        description: ""
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "children"
+          - "parents"
+        collectionFormat: "multi"
       responses:
         200:
           description: "OK"

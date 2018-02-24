@@ -163,6 +163,15 @@ paths:
         description: ""
         required: true
         type: "string"
+      - name: "fields"
+        in: "query"
+        description: ""
+        type: "array"
+        items:
+          type: "string"
+          enum:
+            - "children"
+            - "parents"
       responses:
         200:
           description: "OK"
