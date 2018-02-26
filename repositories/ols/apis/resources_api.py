@@ -235,6 +235,119 @@ class ResourcesApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def children(self, ontology, iri, **kwargs):
+        """
+        
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.children(ontology, iri, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str ontology:  (required)
+        :param str iri:  (required)
+        :param int page: 
+        :param int size: 
+        :return: Terms
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.children_with_http_info(ontology, iri, **kwargs)
+        else:
+            (data) = self.children_with_http_info(ontology, iri, **kwargs)
+            return data
+
+    def children_with_http_info(self, ontology, iri, **kwargs):
+        """
+        
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.children_with_http_info(ontology, iri, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str ontology:  (required)
+        :param str iri:  (required)
+        :param int page: 
+        :param int size: 
+        :return: Terms
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['ontology', 'iri', 'page', 'size']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method children" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'ontology' is set
+        if ('ontology' not in params) or (params['ontology'] is None):
+            raise ValueError("Missing the required parameter `ontology` when calling `children`")
+        # verify the required parameter 'iri' is set
+        if ('iri' not in params) or (params['iri'] is None):
+            raise ValueError("Missing the required parameter `iri` when calling `children`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'ontology' in params:
+            path_params['ontology'] = params['ontology']
+        if 'iri' in params:
+            path_params['iri'] = params['iri']
+
+        query_params = []
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'size' in params:
+            query_params.append(('size', params['size']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []
+
+        return self.api_client.call_api('/ontologies/{ontology}/terms/{iri}/children', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Terms',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def concept(self, ontology, iri, **kwargs):
         """
         
@@ -854,6 +967,119 @@ class ResourcesApi(object):
                                         post_params=form_params,
                                         files=local_var_files,
                                         response_type='Ontology',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def parents(self, ontology, iri, **kwargs):
+        """
+        
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.parents(ontology, iri, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str ontology:  (required)
+        :param str iri:  (required)
+        :param int page: 
+        :param int size: 
+        :return: Terms
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.parents_with_http_info(ontology, iri, **kwargs)
+        else:
+            (data) = self.parents_with_http_info(ontology, iri, **kwargs)
+            return data
+
+    def parents_with_http_info(self, ontology, iri, **kwargs):
+        """
+        
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.parents_with_http_info(ontology, iri, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str ontology:  (required)
+        :param str iri:  (required)
+        :param int page: 
+        :param int size: 
+        :return: Terms
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['ontology', 'iri', 'page', 'size']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method parents" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'ontology' is set
+        if ('ontology' not in params) or (params['ontology'] is None):
+            raise ValueError("Missing the required parameter `ontology` when calling `parents`")
+        # verify the required parameter 'iri' is set
+        if ('iri' not in params) or (params['iri'] is None):
+            raise ValueError("Missing the required parameter `iri` when calling `parents`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'ontology' in params:
+            path_params['ontology'] = params['ontology']
+        if 'iri' in params:
+            path_params['iri'] = params['iri']
+
+        query_params = []
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'size' in params:
+            query_params.append(('size', params['size']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # Authentication setting
+        auth_settings = []
+
+        return self.api_client.call_api('/ontologies/{ontology}/terms/{iri}/parents', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Terms',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

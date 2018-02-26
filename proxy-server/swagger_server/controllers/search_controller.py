@@ -177,36 +177,47 @@ def select_children(module, ontology, iri):
         if not getattr(module_api, 'children', None):
             return obj
 
-        response = module_api.children(ontology, iri)
+        # OLS PoC, to be refactored
+        if 'ols' == module.__name__:
+            qri = urllib.parse.quote(iri, safe='')
+        else:
+            qri = iri
 
-        path = module.Meta().search_xpath
-        get_objects = operator.attrgetter(path)
-
-        concepts = get_objects(response) if path else response
-
-        page = getattr(response, 'page', False)
-        if page:
-            next_page = getattr(page, 'number', response.page) + 1
-            total_pages = getattr(page, 'total_pages',
-                getattr(response, 'page_count', 0))
-            for page in range(next_page, total_pages):
-                _next = module_api.search(ontology, iri, page=page)
-                concepts.extend(get_objects(_next))
-
+        path = module.Meta().concept_xpath
         meta = module.MetaConcept()
 
-        for item in concepts:
-            resp = Concept()
-            for attr, _obj in resp.swagger_types.items():
-                path = getattr(meta, attr, False)
-                if not path:
-                    continue
-                get_value = operator.attrgetter(path)
-                try:
-                    setattr(resp, attr, get_value(item))
-                except:
-                    pass
-            obj.append(resp)
+        get_objects = operator.attrgetter(path)
+
+        pages = list(range(0, 1))
+
+        for page in pages:
+            if not page:
+                _next = module_api.children(ontology, qri)
+                _page_count = getattr(_next, 'page_count', 0)
+
+                if _page_count:
+                    pages.extend(list(range(2, _page_count + 1)))
+                else:
+                    _page = getattr(_next, 'page', False)
+                    _total_pages = getattr(_page, 'total_pages', 0)
+                    pages.extend(list(range(1, _total_pages)))
+            else:
+                _next = module_api.children(ontology, qri, page=page)
+
+            concepts = get_objects(_next) if path else _next
+
+            for item in concepts:
+                resp = Concept()
+                for attr, _obj in resp.swagger_types.items():
+                    path = getattr(meta, attr, False)
+                    if not path:
+                        continue
+                    get_value = operator.attrgetter(path)
+                    try:
+                        setattr(resp, attr, get_value(item))
+                    except:
+                        pass
+                obj.append(resp)
 
     except AttributeError as e:
         print("Exception when parsing API: %s\n" % e)
@@ -234,7 +245,21 @@ def select_parents(module, ontology, iri):
         if not getattr(module_api, 'parents', None):
             return obj
 
-        response = module_api.parents(ontology, iri)
+        # OLS PoC, to be refactored
+        if 'ols' == module.__name__:
+            qri = urllib.parse.quote(iri, safe='')
+        else:
+            qri = iri
+
+        response = module_api.parents(ontology, qri)
+
+        # OLS PoC, to be refactored
+        if 'ols' == module.__name__:
+            path = module.Meta().concept_xpath
+            get_objects = operator.attrgetter(path)
+            response = get_objects(response)
+        else:
+            response = response
 
         meta = module.MetaConcept()
 

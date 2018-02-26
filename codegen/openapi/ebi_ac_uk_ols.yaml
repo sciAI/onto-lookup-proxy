@@ -155,6 +155,84 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/error"
+  /ontologies/{ontology}/terms/{iri}/children:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "children"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/terms"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
+  /ontologies/{ontology}/terms/{iri}/parents:
+    get:
+      tags:
+      - "resources"
+      summary: ""
+      description: ""
+      operationId: "parents"
+      parameters:
+      - name: "ontology"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "iri"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: ""
+        type: "integer"
+      - name: "size"
+        in: "query"
+        description: ""
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/terms"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/error"
   /ontologies/{ontology}/properties:
     get:
       tags:

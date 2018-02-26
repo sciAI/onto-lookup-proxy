@@ -35,7 +35,8 @@ class MetaSearch(object):
         'rdfsis_defined_by': 'str',
         'skospref_label': 'str',
         'skosdefinition': 'str',
-        'skosnote': 'str'
+        'skosnote': 'str',
+        'skosalt_label': 'str'
     }
 
     attribute_map = {
@@ -43,10 +44,11 @@ class MetaSearch(object):
         'rdfsis_defined_by': 'rdfs:isDefinedBy',
         'skospref_label': 'skos:prefLabel',
         'skosdefinition': 'skos:definition',
-        'skosnote': 'skos:note'
+        'skosnote': 'skos:note',
+        'skosalt_label': 'skos:altLabel'
     }
 
-    def __init__(self, id='iri', rdfsis_defined_by='ontology_name', skospref_label='label', skosdefinition='description', skosnote='short_form'):
+    def __init__(self, id='iri', rdfsis_defined_by='ontology_name', skospref_label='label', skosdefinition='description', skosnote='short_form', skosalt_label=''):
         """
         MetaSearch - a model defined in Swagger
         """
@@ -56,6 +58,7 @@ class MetaSearch(object):
         self._skospref_label = None
         self._skosdefinition = None
         self._skosnote = None
+        self._skosalt_label = None
 
         if id is not None:
           self.id = id
@@ -67,6 +70,8 @@ class MetaSearch(object):
           self.skosdefinition = skosdefinition
         if skosnote is not None:
           self.skosnote = skosnote
+        if skosalt_label is not None:
+          self.skosalt_label = skosalt_label
 
     @property
     def id(self):
@@ -172,6 +177,27 @@ class MetaSearch(object):
         """
 
         self._skosnote = skosnote
+
+    @property
+    def skosalt_label(self):
+        """
+        Gets the skosalt_label of this MetaSearch.
+
+        :return: The skosalt_label of this MetaSearch.
+        :rtype: str
+        """
+        return self._skosalt_label
+
+    @skosalt_label.setter
+    def skosalt_label(self, skosalt_label):
+        """
+        Sets the skosalt_label of this MetaSearch.
+
+        :param skosalt_label: The skosalt_label of this MetaSearch.
+        :type: str
+        """
+
+        self._skosalt_label = skosalt_label
 
     def to_dict(self):
         """
