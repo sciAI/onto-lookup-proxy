@@ -139,7 +139,8 @@ Server:
 - get sample ontologies: http://176.31.200.199/repositories/ols/ontologies
 - get sample concepts: http://176.31.200.199/repositories/ols/ontologies/aero/concepts
 - search across repositories: http://176.31.200.199/search?query=ipomoea%20batatas
-- get concepts by IRI: http://176.31.200.199/select?ontology=GO&iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0043226
+- get concept by IRI: http://176.31.200.199/select?ontology=GO&iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0043226
+- get concept and its parent(s) and/or children: http://176.31.200.199/select?ontology=GO&iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0043226&fields=parents,children
 
 Client:
 - start processing: http://176.31.200.202/
@@ -154,9 +155,10 @@ The following repositories are supported:
 - NCBO BioPortal (apikey=e7f84ef1-1530-4a02-85c6-6f907ab44ce8)
   - http://176.31.200.199/repositories/bioportal/ontologies
   - http://176.31.200.199/repositories/bioportal/ontologies/ICO/concepts
-- ANDS Services
-  - (to be defined)
+- IBC AgroPortal (apikey=587de5a7-22b9-4a9d-8c93-4bc4a40ebacf)
+  - http://176.31.200.199/repositories/agroportal/ontologies
+  - http://176.31.200.199/repositories/agroportal/ontologies/ICO/concepts
 
 ### Technical data
 
-All flask servers are located within `/var/www/proxy-*` directories and running 'behind' `apache2` server. To add new repository, please generate it via [swagger codegen](https://editor.swagger.io/), rename `swagger-client` (use any repository codename, eg.: `ols`, `bioportal`) and put it into `/var/www/proxy-server/swagger_server/controllers/repositories/` directory; then restart the server: `/etc/init.d/apache2 restart`
+All flask servers are located within `/var/www/proxy-*` directories and running 'behind' `apache2` server. To add new repository, please generate it via [swagger codegen](https://editor.swagger.io/), rename `swagger-client` (use any repository codename, eg.: `ols`, `bioportal`, `agroportal`) and put it into `/var/www/proxy-server/swagger_server/controllers/repositories/` directory; then restart the server: `/etc/init.d/apache2 restart`
